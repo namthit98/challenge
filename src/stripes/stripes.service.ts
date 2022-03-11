@@ -41,6 +41,7 @@ export class StripesService {
   }
 
   async sync() {
+    await this.prisma.hostingPlan.deleteMany();
     await this.prisma.hostingPlan.createMany({
       data: hosting_plans,
     });
