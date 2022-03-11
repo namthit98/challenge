@@ -1,0 +1,50 @@
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMjFhYjIwMmQtY2FiNi00YWQ3LTg1NmMtNjQ3NWMwMzQ4NmVmIiwiaWF0IjoxNjQ2OTg4NzQzLCJleHAiOjE2NDcwNzUxNDN9.lPVEkeK4q3BPsNZqPtIcrTUy8kJbVjIwW2Yc7U1ab6s
+
+### Sync product and pricing
+GET http://localhost:8000/api/v1/stripes/sync
+
+### Get Plans
+GET http://localhost:8000/api/v1/plans
+
+### Create a new user
+POST http://localhost:8000/api/v1/users
+content-type: application/json
+
+{
+  "username": "user1",
+  "password": "12345",
+  "fullname": "User 1",
+  "email": "user1@test.com"
+}
+
+### Get all user
+GET http://localhost:8000/api/v1/users
+
+### Login by username, password
+POST http://localhost:8000/api/v1/users/login
+content-type: application/json
+
+{
+  "username": "user1",
+  "password": "12345"
+}
+
+
+### Create Sesssion
+POST http://localhost:8000/api/v1/subscriptions/create-session
+Authorization: Bearer {{token}}
+content-type: application/json
+
+{
+  "planId": "ddf4d5ed-6acc-4246-8d28-6e9a98793de5"
+}
+
+
+### Get own subscription
+GET http://localhost:8000/api/v1/subscriptions
+Authorization: Bearer {{token}}
+
+### Detele subscription
+DELETE http://localhost:8000/api/v1/subscriptions/sub_1Kc4DtEtwI2C9S7qQJKo9iow
+Authorization: Bearer {{token}}

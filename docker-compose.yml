@@ -1,0 +1,49 @@
+version: '3.5'
+services:
+  nest-api:
+    container_name: nest-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    depends_on:
+      - postgres
+    networks:
+      - postgres
+    env_file:
+      - .env
+
+  postgres:
+    container_name: postgres_challenge
+    image: postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres:/data/postgres
+    env_file:
+      - docker.env
+    networks:
+      - postgres
+
+  pgadmin:
+    links:
+      - postgres:postgres
+    container_name: pgadmin_challenge
+    image: dpage/pgadmin4
+    ports:
+      - '8080:80'
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    env_file:
+      - docker.env
+    networks:
+      - postgres
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+  postgres:
+  pgadmin:

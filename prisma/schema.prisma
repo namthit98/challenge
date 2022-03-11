@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id    String  @id @db.Uuid @default(dbgenerated("gen_random_uuid()"))
+  username  String
+  password  String
+  fullname  String
+  email String?
+  stripe_customer_id  String?
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt @default(now())
+
+  @@map("users")
+}
+
+model HostingPlan {
+  id    String  @id @db.Uuid @default(dbgenerated("gen_random_uuid()"))
+  name  String
+  price Float
+  ssd Int
+  number_website  Int
+  number_email  Int
+  price_stripe_id String?
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt @default(now())
+
+  @@map("hosting_plans")
+}
