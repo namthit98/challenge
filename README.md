@@ -28,20 +28,20 @@ BASE_URL: http://localhost:8000/api/v1
   - /users
 
     - Body
-      username: String (required): The username of user
-      password: String (required): The password of user
-      fullname: String (required): The fullname of user
-      email: String (required): The email of user
+      - username: String (required): The username of user
+      - password: String (required): The password of user
+      - fullname: String (required): The fullname of user
+      - email: String (required): The email of user
 
   - /users/login
 
     - Body
-      username: String (required): The username to login
-      password: String (required): The password to login
+      - username: String (required): The username to login
+      - password: String (required): The password to login
 
   - /subscriptions/create-session
     - Body
-      planId: String (required): The id of plan
+      - planId: String (required): The id of plan
 
 - DELETE
-  - /subscriptions/:id Delete subscription by its id
+  - /subscriptions/:id : Cancel subscription by its id
